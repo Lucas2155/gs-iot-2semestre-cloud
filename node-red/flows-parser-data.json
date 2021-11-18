@@ -1,0 +1,243 @@
+[
+    {
+        "id": "67ecd432d312aed1",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "42ca8ce1d7401c90",
+        "type": "serial in",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "serial": "744a3bb81f831d72",
+        "x": 210,
+        "y": 260,
+        "wires": [
+            [
+                "c3defe78ce395309",
+                "58c6881a41f05598",
+                "8abc89937fb16ab8",
+                "21fe3c77dc9b87a4"
+            ]
+        ]
+    },
+    {
+        "id": "3eb77bc48273a7b6",
+        "type": "debug",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "c3defe78ce395309",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values[1];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 140,
+        "wires": [
+            [
+                "3eb77bc48273a7b6"
+            ]
+        ]
+    },
+    {
+        "id": "58c6881a41f05598",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values1 = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values1[0];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 260,
+        "wires": [
+            [
+                "71abd58c89f31c63"
+            ]
+        ]
+    },
+    {
+        "id": "8abc89937fb16ab8",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values1 = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values1[3];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 420,
+        "wires": [
+            [
+                "5171e26c8244e955"
+            ]
+        ]
+    },
+    {
+        "id": "21fe3c77dc9b87a4",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values1 = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values1[2];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 600,
+        "wires": [
+            [
+                "91ecb908b639ea77"
+            ]
+        ]
+    },
+    {
+        "id": "91ecb908b639ea77",
+        "type": "ui_gauge",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "group": "701f6525cc5e1b6c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Motor-2",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1024",
+        "colors": [
+            "#b32400",
+            "#e6e600",
+            "#3a52cb"
+        ],
+        "seg1": "20",
+        "seg2": "21",
+        "className": "",
+        "x": 880,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "71abd58c89f31c63",
+        "type": "ui_gauge",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "group": "701f6525cc5e1b6c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Motor-1",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1024",
+        "colors": [
+            "#b32400",
+            "#e6e600",
+            "#3a52cb"
+        ],
+        "seg1": "20",
+        "seg2": "21",
+        "className": "",
+        "x": 860,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "5171e26c8244e955",
+        "type": "debug",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "d34b15502e0194b6",
+        "type": "twitter in",
+        "z": "67ecd432d312aed1",
+        "tags": "",
+        "user": "false",
+        "name": "",
+        "inputs": 0,
+        "x": 1160,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "744a3bb81f831d72",
+        "type": "serial-port",
+        "serialport": "/dev/tty.usbserial-1460",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "701f6525cc5e1b6c",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "830f4e10f140291c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "830f4e10f140291c",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

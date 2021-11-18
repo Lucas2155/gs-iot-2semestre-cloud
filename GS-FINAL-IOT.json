@@ -1,0 +1,762 @@
+[
+    {
+        "id": "67ecd432d312aed1",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "42ca8ce1d7401c90",
+        "type": "serial in",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "serial": "744a3bb81f831d72",
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "58c6881a41f05598",
+                "8abc89937fb16ab8",
+                "21fe3c77dc9b87a4",
+                "c3defe78ce395309"
+            ]
+        ]
+    },
+    {
+        "id": "c3defe78ce395309",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values[1];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 120,
+        "wires": [
+            [
+                "16f3000d36319e11"
+            ]
+        ]
+    },
+    {
+        "id": "58c6881a41f05598",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values1 = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values1[0];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 260,
+        "wires": [
+            [
+                "71abd58c89f31c63",
+                "572241f4c2065d85"
+            ]
+        ]
+    },
+    {
+        "id": "8abc89937fb16ab8",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values1 = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values1[3];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 620,
+        "wires": [
+            [
+                "3198668e3b396c29"
+            ]
+        ]
+    },
+    {
+        "id": "21fe3c77dc9b87a4",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values1 = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values1[2];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 460,
+        "wires": [
+            [
+                "91ecb908b639ea77",
+                "587a3dd23b797a5d"
+            ]
+        ]
+    },
+    {
+        "id": "91ecb908b639ea77",
+        "type": "ui_gauge",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "group": "701f6525cc5e1b6c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Motor-2",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1024",
+        "colors": [
+            "#b32400",
+            "#e6e600",
+            "#3a52cb"
+        ],
+        "seg1": "20",
+        "seg2": "21",
+        "className": "",
+        "x": 920,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "71abd58c89f31c63",
+        "type": "ui_gauge",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "group": "701f6525cc5e1b6c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Motor-1",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1024",
+        "colors": [
+            "#b32400",
+            "#e6e600",
+            "#3a52cb"
+        ],
+        "seg1": "20",
+        "seg2": "21",
+        "className": "",
+        "x": 920,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "16f3000d36319e11",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "var newvalue = \"MOTOR DESLIGADO\" \nmsg.newproperty=newvalue;\nvar values = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values[0];// replace payload with the reading we want\nif (msg.payload === \"Motor 1 esta ativo\") {\n   return [ null, msg];\n} else {\n   return [ msg, null ];\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 120,
+        "wires": [
+            [
+                "6029fbf003023543"
+            ]
+        ]
+    },
+    {
+        "id": "3198668e3b396c29",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "var newvalue = \"MOTOR 2 DESLIGADO\"\nmsg.newproperty=newvalue;\nvar values = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values[0];// replace payload with the reading we want\nif (msg.payload === \"Motor 2 esta ativo\") {\n   return [ null, msg ];\n} else {\n   return [ msg, null ];\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 620,
+        "wires": [
+            [
+                "75445f1363b57a45"
+            ]
+        ]
+    },
+    {
+        "id": "3cf5e3e8abeffd49",
+        "type": "twitter out",
+        "z": "67ecd432d312aed1",
+        "twitter": "",
+        "name": "MOTOR-1-OFF",
+        "x": 1360,
+        "y": 120,
+        "wires": [],
+        "info": "motor 1 está desligado por favor valide"
+    },
+    {
+        "id": "6029fbf003023543",
+        "type": "delay",
+        "z": "67ecd432d312aed1",
+        "name": "MOTOR-1",
+        "pauseType": "queue",
+        "timeout": "60",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "60",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1130,
+        "y": 120,
+        "wires": [
+            [
+                "3cf5e3e8abeffd49"
+            ]
+        ]
+    },
+    {
+        "id": "75445f1363b57a45",
+        "type": "delay",
+        "z": "67ecd432d312aed1",
+        "name": "MOTOR-2",
+        "pauseType": "queue",
+        "timeout": "60",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "60",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1130,
+        "y": 620,
+        "wires": [
+            [
+                "0d789fdf642b7a4e"
+            ]
+        ]
+    },
+    {
+        "id": "0d789fdf642b7a4e",
+        "type": "twitter out",
+        "z": "67ecd432d312aed1",
+        "twitter": "",
+        "name": "MOTOR-2-OFF",
+        "x": 1360,
+        "y": 620,
+        "wires": [],
+        "info": "motor está desligado por favor valide"
+    },
+    {
+        "id": "55bf26ce1efd17f6",
+        "type": "serial in",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "serial": "30edf812f9b33ee4",
+        "x": 780,
+        "y": 1020,
+        "wires": [
+            [
+                "9c8bd6f3479dc03c",
+                "b992dea44224d9a7"
+            ]
+        ]
+    },
+    {
+        "id": "31b73cc855e904c2",
+        "type": "mqtt out",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "topic": "cloudit",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "871016dca60b870a",
+        "x": 1190,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "b992dea44224d9a7",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values[1];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 840,
+        "wires": [
+            [
+                "31b73cc855e904c2",
+                "fec1735b9ad8f9d8",
+                "7973b70dbdb60d2d"
+            ]
+        ]
+    },
+    {
+        "id": "9c8bd6f3479dc03c",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "\nvar values = msg.payload.trim().split(',');    // trim off the crlf first then split into parts   \nmsg.payload = values[4];  // replace payload with the reading we want\n//msg.topic = values[4];      // set the topic in case we need to tell them apart later\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 1200,
+        "wires": [
+            [
+                "4204639d97efc246",
+                "5abdfa474f14b782",
+                "fb8fd36cb2602d35"
+            ]
+        ]
+    },
+    {
+        "id": "4204639d97efc246",
+        "type": "ui_gauge",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "group": "701f6525cc5e1b6c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "70",
+        "colors": [
+            "#0036b3",
+            "#00e639",
+            "#cb3a5e"
+        ],
+        "seg1": "23",
+        "seg2": "27",
+        "className": "",
+        "x": 1250,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "5abdfa474f14b782",
+        "type": "mqtt out",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "topic": "cloudit",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "871016dca60b870a",
+        "x": 1230,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "b68c0f8cbe73228d",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "var umidade = msg.payload\nmsg.topic = \"INSERT INTO cloudid_umidade VALUES ('\"+umidade+\"')\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1560,
+        "y": 840,
+        "wires": [
+            [
+                "bda0379306053b41"
+            ]
+        ]
+    },
+    {
+        "id": "77792dd1abab3058",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "var temperature = msg.payload\nmsg.topic = \"INSERT INTO cloudid_temperatura VALUES ('\"+temperature+\"')\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1560,
+        "y": 1200,
+        "wires": [
+            [
+                "bda0379306053b41"
+            ]
+        ]
+    },
+    {
+        "id": "bda0379306053b41",
+        "type": "mysql",
+        "z": "67ecd432d312aed1",
+        "mydb": "b95f53c2b690d2b7",
+        "name": "",
+        "x": 1770,
+        "y": 1000,
+        "wires": [
+            [
+                "1d4d90f9b03f7af4"
+            ]
+        ]
+    },
+    {
+        "id": "1d4d90f9b03f7af4",
+        "type": "debug",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1990,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "fec1735b9ad8f9d8",
+        "type": "delay",
+        "z": "67ecd432d312aed1",
+        "name": "INSERT-DB-UMIDADE",
+        "pauseType": "queue",
+        "timeout": "60",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "60",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1320,
+        "y": 840,
+        "wires": [
+            [
+                "b68c0f8cbe73228d"
+            ]
+        ]
+    },
+    {
+        "id": "fb8fd36cb2602d35",
+        "type": "delay",
+        "z": "67ecd432d312aed1",
+        "name": "INSERT-DB-TEMPERATURA",
+        "pauseType": "queue",
+        "timeout": "60",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "60",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1300,
+        "y": 1200,
+        "wires": [
+            [
+                "77792dd1abab3058"
+            ]
+        ]
+    },
+    {
+        "id": "7973b70dbdb60d2d",
+        "type": "ui_gauge",
+        "z": "67ecd432d312aed1",
+        "name": "Umidade",
+        "group": "701f6525cc5e1b6c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Umidade",
+        "label": "percent",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#b30036",
+            "#00e639",
+            "#217cde"
+        ],
+        "seg1": "49",
+        "seg2": "50",
+        "className": "",
+        "x": 1240,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "65def2e815a0060f",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "var cloudid_motor_1_vibrate = msg.payload\nmsg.topic = \"INSERT INTO cloudid_motor_1_vibrate VALUES ('\"+cloudid_motor_1_vibrate+\"')\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 320,
+        "wires": [
+            [
+                "d4823b35b37e5c2e"
+            ]
+        ]
+    },
+    {
+        "id": "47c3d391bd0432d2",
+        "type": "function",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "func": "var cloudid_motor_2_vibrate = msg.payload\nmsg.topic = \"INSERT INTO cloudid_motor_2_vibrate VALUES ('\"+cloudid_motor_2_vibrate+\"')\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 420,
+        "wires": [
+            [
+                "d4823b35b37e5c2e"
+            ]
+        ]
+    },
+    {
+        "id": "d4823b35b37e5c2e",
+        "type": "mysql",
+        "z": "67ecd432d312aed1",
+        "mydb": "b95f53c2b690d2b7",
+        "name": "",
+        "x": 1330,
+        "y": 380,
+        "wires": [
+            [
+                "86a59a0175e06366"
+            ]
+        ]
+    },
+    {
+        "id": "572241f4c2065d85",
+        "type": "delay",
+        "z": "67ecd432d312aed1",
+        "name": "MOTOR-1",
+        "pauseType": "queue",
+        "timeout": "60",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "60",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 320,
+        "wires": [
+            [
+                "65def2e815a0060f"
+            ]
+        ]
+    },
+    {
+        "id": "86a59a0175e06366",
+        "type": "debug",
+        "z": "67ecd432d312aed1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1530,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "587a3dd23b797a5d",
+        "type": "delay",
+        "z": "67ecd432d312aed1",
+        "name": "MOTOR-2",
+        "pauseType": "queue",
+        "timeout": "60",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "60",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 930,
+        "y": 420,
+        "wires": [
+            [
+                "47c3d391bd0432d2"
+            ]
+        ]
+    },
+    {
+        "id": "744a3bb81f831d72",
+        "type": "serial-port",
+        "serialport": "/dev/tty.usbserial-1460",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "701f6525cc5e1b6c",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "830f4e10f140291c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "30edf812f9b33ee4",
+        "type": "serial-port",
+        "serialport": "/dev/tty.usbserial-A50285BI",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "100"
+    },
+    {
+        "id": "871016dca60b870a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.eclipseprojects.io",
+        "port": "1883",
+        "tls": "105947beed2012c0",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "cloudit_umidade",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b95f53c2b690d2b7",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "cloudit.czgypqecbnb1.us-east-1.rds.amazonaws.com",
+        "port": "3306",
+        "db": "cloudit",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "830f4e10f140291c",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "105947beed2012c0",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "51a7c2dd44ed27b3861b32c043419142c1ac5e1098ed05679159db4674820e8c-certificate.pem.crt",
+        "keyname": "51a7c2dd44ed27b3861b32c043419142c1ac5e1098ed05679159db4674820e8c-private.pem.key",
+        "caname": "AmazonRootCA1.pem",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    }
+]
